@@ -86,16 +86,29 @@ app.get("/cartdetails", getProductByUserId);
 app.get("/summary", cartSummary);
 
 
-mongoose.connect(process.env.DB_URL).then(() => {
-    console.log("database connected");
-    app.listen(process.env.PORT, () => {
-        console.log("server running at port:" + process.env.PORT);
-    });
-}).catch(() => {
-    console.log("database connection error");
-});
 const PORT = process.env.PORT || 1217;
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-});
+mongoose.connect(process.env.DB_URL)
+    .then(() => {
+        console.log("Database connected successfully");
+
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log("Server running at port: " + PORT);
+        });
+    })
+    .catch((error) => {
+        console.log("Database connection error:", error.message);
+    })
+// mongoose.connect(process.env.DB_URL).then(() => {
+//     console.log("database connected");
+//     app.listen(process.env.PORT, () => {
+//         console.log("server running at port:" + process.env.PORT);
+//     });
+// }).catch(() => {
+//     console.log("database connection error");
+// });
+// const PORT = process.env.PORT || 1217;
+
+// app.listen(PORT, "0.0.0.0", () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
