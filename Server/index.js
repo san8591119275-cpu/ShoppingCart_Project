@@ -94,3 +94,8 @@ mongoose.connect(process.env.DB_URL).then(() => {
 }).catch(() => {
     console.log("database connection error");
 });
+const PORT = process.env.PORT || 1217;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+});
